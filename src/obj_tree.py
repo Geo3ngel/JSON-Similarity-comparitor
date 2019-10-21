@@ -6,4 +6,4 @@ class tree():
     
     def __init__(self, root):
         self.root_node = node(root)
-        
+        print(node.total_depth)
