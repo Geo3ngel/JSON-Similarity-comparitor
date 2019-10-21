@@ -1,5 +1,7 @@
 import sys
 import json
+import os.path
+import Equivalence_Processor as eq
 
 # TODO: Command line arguements for files to compare.
 
@@ -10,11 +12,27 @@ def run():
     if argument_amount >= 3:
         json_file_A = sys.argv[1]
         json_file_B = sys.argv[2]
-        print("Running", sys.argv[0], " on files:", json_file_A, "and", json_file_B)
-        # TODO: Verify both files exist
+        
+        # Validate that both the json files entered as parameters exist.
+        if validate_file(json_file_A) and validate_file(json_file_B):
+            print("Running", sys.argv[0], " on files:", json_file_A, "and", json_file_B)
+        else:
+            print("Please enter valid file paths. Program Exiting...")
     else:
         print("Not enough Arguements. Please include JSON files to compare.")
-    
+# TODO: Consider adding pathing manager?
+
+# Validates if the file exists or not.
+def validate_file(file_path):
+    if file_path is None:
+        print("No file/path entered.")
+        return False
+    elif os.path.exists(file_path):
+        return True
+    else:
+        print("File name/path is Invalid:", file_path)
+        return False
+        
 # Converts files to objects
 def open_files_as_objects(filename_A, filename_B):
     json_object_a = None
@@ -32,5 +50,8 @@ def open_files_as_objects(filename_A, filename_B):
     print()
     for p in json_object_b:
         print(p)
+        
+    eq.compare_json_objs(json_object_a, json_object_b)
 
 run()
+# Current testing command: python JSON_Compare.py ../Examples/BreweriesMaster.json ../Examples/BreweriesSample1.json

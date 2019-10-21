@@ -1,11 +1,11 @@
 # TODO: Compare similarity of the two objects.
 
 # Initial check: Are they completely equivalent?
-
-if a == b:
-    print("EQ")
-else: 
-    print("NEQ")
+def compare_json_objs(a, b):
+    if a == b:
+        print("EQ")
+    else: 
+        print("NEQ")
     
 
 # Check if their base structure is at all similar
