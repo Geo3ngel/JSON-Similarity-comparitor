@@ -17,3 +17,9 @@ A command line tool for comparing JSON files by degree of similarity.
 ## PLANNED BONUSES:
 * An output log of exactly what variables are different, and what the difference is. (Comparing objects)
 * In that output log, include what attributes one object has/lacks in comparison to the other.
+
+include in break down what line is different in each JSON file.
+- amount of differences?
+
+## TESTS:
+- TODO: Include testing w/ justifications and explanations.
