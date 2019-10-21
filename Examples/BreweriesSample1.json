@@ -1,0 +1,61 @@
+{
+"state-fish": "Cutthroat Trout",
+"state-bird": "Western Meadowloark",
+"breweries": [
+{
+"name": "Madison River Brewing",
+"location": {
+"address": "20900 Frontage Rd Building B",
+"state": "MT",
+"city": "Belgrade",
+"zip-code": "59714"
+},
+"food-available": false,
+"beers": [
+{
+"name": "Salmon Fly Honey Rye",
+"color": "Gold",
+"international-bitterness-units": 12,
+"alcohol-by-volume": 0.04
+},
+{
+"name": "Copper John Scotch Ale",
+"color": "Copper",
+"international-bitterness-units": 35,
+"alcohol-by-volume": 0.055
+},
+{
+"name": "Dropper IPA",
+"color": "Amber",
+"international-bitterness-units": 108,
+"alcohol-by-volume": 0.065
+}
+]
+},
+{
+"name": "Bozeman Brewing",
+"location": {
+"city": "Bozeman",
+"address": "504 N. Broadway",
+"state": "MT",
+"zip-code": "59715"
+},
+"food-available": true,
+"beers": [
+{
+"name": "Bozone Amber Ale",
+"color": "Amber",
+"international-bitterness-units": 29,
+"alcohol-by-volume": 0.054
+},
+{
+"name": "Plum Street Porter",
+"international-bitterness-units": 52,
+"color": "Dark",
+"alcohol-by-volume": 0.06
+}
+]
+}
+],
+"state": "MT"
+}

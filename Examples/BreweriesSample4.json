@@ -1,0 +1,51 @@
+{
+  "state": "MT",
+  "breweries": [
+    {
+      "name": "Madison River Brewing",
+      "food-available": false,
+      "beer-list": [
+        {
+          "name": "Salmon Fly Honey Rye",
+          "international-bitterness-units": 12,
+          "alcohol-by-volume": 0.04
+        },
+        {
+          "name": "Copper John Scotch Ale",
+          "color": "Copper",
+          "international-bitterness-units": 35,
+          "alcohol-by-volume": 0.055
+        },
+        {
+          "name": "Dropper IPA",
+          "color": "Amber",
+          "international-bitterness-units": 108,
+          "alcohol-by-volume": 0.065
+        }
+      ]
+    },
+    {
+      "name": "Bozeman Brewing",
+      "address": {
+        "streetaddress": "504 N. Broadway",
+        "city": "Bozeman",
+        "zip-code": "59715"
+      },
+      "food-available": true,
+      "beer-list": [
+        {
+          "name": "Bozone Amber Ale",
+          "color": "Amber",
+          "international-bitterness-units": 29,
+          "alcohol-by-volume": 0.054
+        },
+        {
+          "name": "Plum Street Porter",
+          "color": "Dark",
+          "international-bitterness-units": 52,
+          "alcohol-by-volume": 0.06
+        }
+      ]
+    }
+  ]
+}
