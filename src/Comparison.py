@@ -27,7 +27,7 @@ class Comparison():
         # TODO: Consider mapping of filename/objects and related information?
         
         # Run comparison on the json objects
-        self.similarity = eq.compare_json_objs(self.json_object_a, self.json_object_b)
+        self.similarity = eq.compare_json_objs(self)
         result = self.similarity*100
         print("\nSimilarity Result:", str(result)+"%")
     

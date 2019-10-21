@@ -1,13 +1,16 @@
 # TODO: Compare similarity of the two objects.
 
+# Imports
+from obj_tree import tree
+
 # TODO: Change to just take in Comparison object?
-def compare_json_objs(a, b):
+def compare_json_objs(comparison):
     
     # Direct equivalence check
-    if a != b:
+    if comparison.json_object_a != comparison.json_object_b:
         # Calculate how similar they are, if at all. 
         print("NEQ")
-        recurse(a,b)
+        compare_objects(comparison)
         return 0
         
     else: 
@@ -30,18 +33,15 @@ def compare_objects(comparison):
     obj_b = comparison.json_object_b
     
     # lists for keeping track of the current object value's states for comparison
-    state_list_a = []
-    state_list_b = []
-    
-    for var in obj_a:
-        state_list_a.append(var)
-    for var in obj_b:
-        state_list_b.append(var)
+    tree_a = tree(obj_a)
+    #tree_b = tree(obj_b)
         
     # TODO: Evaluate similarity between these lists.
     # - Determine the similarity of each variable in the list
     # - If equal, get it's depth & return that value with (true)
     # - Else If not equal, go deeper into that object to find the diff. (Mark each similarity until then though)
+    
+    # DATA STRUCTURE FOR THIS: A tree with the ability to mark nodes as having been visited?
     
 
 # Takes in two objects and exlpores their depths.
