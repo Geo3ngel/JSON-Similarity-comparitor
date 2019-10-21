@@ -42,13 +42,6 @@ class Comparison():
             
         with open(filename_B) as json_file:
             json_object_b = json.load(json_file)
-            
-        # Temporary print outs for the objects. Include in Verbos call?
-        for p in json_object_a:
-            print(p)
-        print()
-        for p in json_object_b:
-            print(p)
         
         # Return both json objects
         return json_object_a, json_object_b
