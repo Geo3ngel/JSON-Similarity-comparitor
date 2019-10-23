@@ -4,7 +4,7 @@
 # Imports
 import Equivalence_Processor as eq
 import json
-
+    
 class Comparison():
     
     # Initialize a comparison with the json file name

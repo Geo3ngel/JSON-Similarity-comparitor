@@ -34,7 +34,7 @@ def compare_objects(comparison):
     
     # lists for keeping track of the current object value's states for comparison
     tree_a = tree(obj_a)
-    #tree_b = tree(obj_b)
+    tree_b = tree(obj_b)
         
     # TODO: Evaluate similarity between these lists.
     # - Determine the similarity of each variable in the list
