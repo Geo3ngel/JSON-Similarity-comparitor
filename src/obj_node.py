@@ -27,8 +27,13 @@ class node():
         self.atomic_values = 0
         self.list_count = 0
         self.dict_count = 0
+        
+        self.generate_children()
     
+    # Generates the children nodes & tracks relevant values for comparison
+    def generate_children(self):    
         type_val = self.type_check()
+        
         if type_val is LIST:
             self.process_list()
             # Keep track of values for this!
@@ -48,7 +53,7 @@ class node():
             self.atomic_values += child.atomic_values
             self.list_count += child.list_count
             self.dict_count += child.dict_count
-        
+            
     def get_parent(self):
         return self.parent
     
@@ -77,7 +82,7 @@ class node():
     def process_list(self):
         #print("LIST:", self.var)
         for var in self.var:
-            self.children.append(node(var))
+            self.children.append(node(var, self))
             print("VAR:", var)
             
     # Processes dictionaries into nodes for tree traversal
@@ -87,4 +92,4 @@ class node():
             # TODO: Consider storing variable name too? (key)
             # Or possibly come up with a dictionary comparison function.
             # Evaluate keys, then go deeper if needed for comparison.
-            self.children.append(node(self.var.get(key)))
+            self.children.append(node(self.var.get(key), self))

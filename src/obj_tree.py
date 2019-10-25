@@ -8,7 +8,7 @@ class tree():
     def __init__(self, root):
         # initializes all the nodes in the tree.
         self.root_node = node(root, None)
-        
+      
         # Initializes the next node as the root
         self.next_node = self.root_node
         
