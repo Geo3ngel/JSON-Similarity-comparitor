@@ -6,18 +6,21 @@ from obj_node import node
 class tree():
     
     def __init__(self, root):
-        self.root_node = node(root)
+        # initializes all the nodes in the tree.
+        self.root_node = node(root, None)
         
-        # Keeps track of the amount of given attribute types in each json object for comparison when they are being parsed
-        atomic_values, list_count, dict_count, node_count = self.root_node.get_value_counts()
-        # self.atomic_values = 0
-        # self.list_count = 0
-        # self.dict_count = 0
+        # Initializes the next node as the root
+        self.next_node = self.root_node
         
-        print("Node count:", self.root_node.node_count)
-        print("Atomic value count:", atomic_values)
-        print("List count:", list_count)
-        print("Dictionary Count:", dict_count)
+    def get_next_node(self):
+        return self.next_node
+    
+    def set_next_node(self, next_node):
+        self.next_node =  next_node
+    
+    def set_parent_node(self):
+        self.next_node.get_parent()
+    
+    def get_values(self):
+        return self.root_node.get_value_counts()
         
-        # TODO: Add functionality here for tree traversal
-        # TODO: Consider adding comparison functionality here?

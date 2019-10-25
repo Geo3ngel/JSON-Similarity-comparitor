@@ -11,7 +11,9 @@ class node():
     
     total_depth = 0
     
-    def __init__(self, variable):
+    def __init__(self, variable, parent):
+        # Gives this node a parent to reference for tree traversal
+        self.parent = parent
         self.var = variable
         self.visited = False
         
@@ -47,17 +49,14 @@ class node():
             self.list_count += child.list_count
             self.dict_count += child.dict_count
         
-    def compare(self, node):
-        # TODO: make this function compare one node to another?
-        pass
+    def get_parent(self):
+        return self.parent
+    
+    def get_children(self):
+        return self.children
     
     def get_value_counts(self):
         return self.atomic_values, self.list_count, self.dict_count, self.node_count
-    
-    def has_next(self):
-        if len(self.children) > 0:
-            # TODO: Check for 
-            pass
 
     def get_node_type(self):
         return self.node_type
