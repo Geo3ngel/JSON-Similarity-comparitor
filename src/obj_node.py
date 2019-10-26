@@ -62,12 +62,18 @@ class node():
     
     def get_value_counts(self):
         return self.atomic_values, self.list_count, self.dict_count, self.node_count
+    
+    def get_total(self):
+        return self.node_count
 
     def get_node_type(self):
         return self.node_type
 
     def is_visited(self):
         return self.visited
+    
+    def set_visited(self):
+        self.visited = True
 
     # Function to tell if we can split the current var deeper, or should just evaluate it at it's current depth
     def type_check(self):

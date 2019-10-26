@@ -4,3 +4,15 @@ src/__pycache__/Comparison\.cpython-37\.pyc
 src/__pycache__/obj_tree\.cpython-37\.pyc
 
 *.pyc
+
+\.idea/inspectionProfiles/profiles_settings\.xml
+
+\.idea/JSON-Similarity-comparitor\.iml
+
+\.idea/misc\.xml
+
+\.idea/modules\.xml
+
+\.idea/vcs\.xml
+
+\.idea/

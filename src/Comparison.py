@@ -2,7 +2,7 @@
 # To their respective file names.
 
 # Imports
-import Equivalence_Processor as eq
+from Equivalence_Processor import Equivalence_Processor as equivalence_calc
 import json
     
 class Comparison():
@@ -27,6 +27,7 @@ class Comparison():
         # TODO: Consider mapping of filename/objects and related information?
         
         # Run comparison on the json objects
+        eq = equivalence_calc()
         self.similarity = eq.compare_json_objs(self)
         result = self.similarity*100
         print("\nSimilarity Result:", str(result)+"%")
