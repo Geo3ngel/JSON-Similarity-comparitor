@@ -16,6 +16,9 @@ class node():
         self.parent = parent
         self.var = variable
         self.visited = False
+        # bool value to represent if a node has been evaluated for it's similarity score.
+        # This is to prevent parent nodes from contributing to similarity scores more than once.
+        self.evaluated = False
         
         # Stores the type of this node for later comparison
         self.node_type = type(variable)
@@ -43,7 +46,7 @@ class node():
             self.dict_count += 1
         else:
             # TODO: Evaluate this properly via comparison
-            print("TYPE:", type(self.var), "Evaluate Me:", self.var)
+            # print("TYPE:", type(self.var), "Evaluate Me:", self.var)
             self.atomic_values += 1
             
         # Determines the amount of nodes in the current tree (starting from this node)
@@ -56,9 +59,18 @@ class node():
             
     def get_parent(self):
         return self.parent
+
+    def is_evaluated(self):
+        return self.evaluated
+
+    def set_evaluated(self):
+        self.evaluated = True
     
     def get_children(self):
         return self.children
+
+    def get_var(self):
+        return self.var
     
     def get_value_counts(self):
         return self.atomic_values, self.list_count, self.dict_count, self.node_count
@@ -89,7 +101,7 @@ class node():
         #print("LIST:", self.var)
         for var in self.var:
             self.children.append(node(var, self))
-            print("VAR:", var)
+            #print("VAR:", var)
             
     # Processes dictionaries into nodes for tree traversal
     def process_dict(self):

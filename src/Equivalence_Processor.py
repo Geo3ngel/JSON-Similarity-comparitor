@@ -83,7 +83,10 @@ class Equivalence_Processor():
         
         # We are done traversing the trees when the root nodes are both visited.
         while (not self.tree_a.root_visited()) and (not self.tree_b.root_visited()):
-            
+            if self.tree_a.get_next_node().is_visited():
+                self.tree_a.set_next_as_parent()
+                self.tree_b.set_next_as_parent()
+
             if self.node_comparison(self.tree_a.get_next_node(), self.tree_b.get_next_node()):
                 # If true, we need to go a layer deeper. So we go inside the current set of nodes, and evaluate their children.
                 # Choose the first child that has not been visited.
@@ -111,48 +114,50 @@ class Equivalence_Processor():
                 if (self.tree_a.get_next_node().get_parent() is not None) and (self.tree_b.get_next_node().get_parent() is not None):
                     self.tree_a.set_next_as_parent()
                     self.tree_b.set_next_as_parent()
+                    self.visitation_check()
 
-                # After updating the next node, we check if it should be set to visited (if all it's children are visited)
-                visit_check_a = True
-                for child in self.tree_a.get_next_node().get_children():
-                    if not child.is_visited():
-                        visit_check_a = False
-                        break
-                        
-                visit_check_b = True
+
+    def visitation_check(self):
+        # After updating the next node, we check if it should be set to visited (if all it's children are visited)
+        visit_check_a = True
+        for child in self.tree_a.get_next_node().get_children():
+            if not child.is_visited():
+                visit_check_a = False
+                break
+                # ERROR IN HERE???
+        visit_check_b = True
+        for child in self.tree_b.get_next_node().get_children():
+            if not child.is_visited():
+                visit_check_b = False
+                break
+
+        # If one node is set to visited, the other node should also be set to visited, and if it has any remaining children, they should be accounted for by adding their values to diff_val.
+        if (not visit_check_a) and (not visit_check_b):
+            # Don't set either to visited.
+            pass
+        elif visit_check_a and visit_check_b:
+            # Both are visited fully
+            self.tree_b.get_next_node().set_visited()
+            self.tree_a.get_next_node().set_visited()
+        else:
+            # Only one was finished being visited, which means we use the remaining children of the other node for their values and set it to visited anyway.
+            if visit_check_a:
                 for child in self.tree_b.get_next_node().get_children():
                     if not child.is_visited():
-                        visit_check_b = False
-                        break
-                    
-                # If one node is set to visited, the other node should also be set to visited, and if it has any remaining children, they should be accounted for by adding their values to diff_val.
-                if (not visit_check_a) and (not visit_check_b):
-                    # Don't set either to visited.
-                    pass
-                elif visit_check_a and visit_check_b:
-                    # Both are visited fully
-                    self.tree_b.get_next_node().set_visited()
-                    self.tree_a.get_next_node().set_visited()
-                else:
-                    # Only one was finished being visited, which means we use the remaining children of the other node for their values and set it to visited anyway.
-                    if visit_check_a:
-                        for child in self.tree_b.get_next_node().get_children():
-                            if not child.is_visited():
-                                self.diff_val += child.get_total()
-                    else:
-                        for child in self.tree_a.get_next_node().get_children():
-                            if not child.is_visited():
-                                self.diff_val += child.get_total()
-                                
-                    self.tree_b.get_next_node().set_visited()
-                    self.tree_a.get_next_node().set_visited()
-                    
+                        self.diff_val += child.get_total()
+            else:
+                for child in self.tree_a.get_next_node().get_children():
+                    if not child.is_visited():
+                        self.diff_val += child.get_total()
+
+            self.tree_b.get_next_node().set_visited()
+            self.tree_a.get_next_node().set_visited()
                     
                     
     # Adds the node's compared value to the totals, and returns whether or not the nodes need to be explored deeper.
     def node_comparison(self, node_a, node_b):
         # Checks if the nodes are equivalent
-        if node_a is node_b:
+        if node_a.get_var() == node_b.get_var():
             print("NODES ARE EQ")
             # Adds the nodes of tree a to similarity value
             self.sim += node_a.get_total()
@@ -187,17 +192,24 @@ class Equivalence_Processor():
         else:
             print("SAME TYPE")
             # Checks if the nodes are atomic, meaning they just have different values.
-            if node_a.type_check() == -1 and node_b.type_check() == -1:
+            if node_a.type_check() == -1 and node_b.type_check() == -1 and not node_a.is_evaluated():
                 # Add 1 to diff, mark both as visited.
                 self.diff_val += 1
                 node_a.set_visited()
                 node_b.set_visited()
+                node_a.set_evaluated()
+                node_b.set_evaluated()
             else: # Both are of either type 'DICT' or 'LIST'
                 # Add 1 to similarity, as these nodes technically match, the only difference is the children nodes.
-                self.sim += 1
+                if not node_a.is_evaluated():
+                    self.sim += 1
+                    node_a.set_evaluated()
+                    node_b.set_evaluated()
+                self.visitation_check()
 
                 if len(node_a.get_children()) > 0 and len(node_b.get_children()) > 0:
                     # Signal to go deeper into these nodes
+                    # TODO: Move visitation check here?
                     return True
                 elif len(node_a.get_children()) > 0:
                     # Node b is an empty dict/list, so we add the value of node a minus 1 to the total diff value.
@@ -209,5 +221,5 @@ class Equivalence_Processor():
                     self.diff_val += node_b.get_total()-1
                     node_a.set_visited()
                     node_b.set_visited()
-                    
+
                 return False
