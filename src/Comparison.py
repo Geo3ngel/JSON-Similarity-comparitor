@@ -17,20 +17,9 @@ class Comparison():
         # Store the json objects for easier referencing
         self.json_object_a, self.json_object_b = self.open_files_as_objects(json_filename_a, json_filename_b)
         
-        # Initialize similarity metrics
-        self.similarity = 1.0
-        
-        # TODO: Handle file differences as some kind of tree structure?
-        self.file_a_differences = 0
-        self.file_b_differences = 0
-        
-        # TODO: Consider mapping of filename/objects and related information?
-        
         # Run comparison on the json objects
         eq = equivalence_calc()
         self.similarity = eq.compare_json_objs(self)
-        result = self.similarity*100
-        print("\nSimilarity Result:", str(result)+"%")
     
     # Converts files to objects
     def open_files_as_objects(self, filename_A, filename_B):

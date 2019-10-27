@@ -5,7 +5,6 @@ from Comparison import Comparison
 
 # effectively the program's main function.
 def run():
-    # TODO: Consider inclusion of colored coded print outs?
     argument_amount = len(sys.argv)
     if argument_amount >= 3:
         json_file_A = sys.argv[1]
@@ -33,4 +32,3 @@ def validate_file(file_path):
         return False
         
 run()
-# Current testing command: python JSON_Compare.py ../Examples/BreweriesMaster.json ../Examples/BreweriesSample1.json

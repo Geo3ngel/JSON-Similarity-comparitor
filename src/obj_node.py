@@ -45,8 +45,6 @@ class node():
             self.process_dict()
             self.dict_count += 1
         else:
-            # TODO: Evaluate this properly via comparison
-            # print("TYPE:", type(self.var), "Evaluate Me:", self.var)
             self.atomic_values += 1
             
         # Determines the amount of nodes in the current tree (starting from this node)
@@ -56,15 +54,35 @@ class node():
             self.atomic_values += child.atomic_values
             self.list_count += child.list_count
             self.dict_count += child.dict_count
+
+    # Function to tell if we can split the current var deeper, or should just evaluate it at it's current depth
+    def type_check(self):
+        if (self.node_type is list):
+            return LIST
+        elif(self.node_type is dict):
+            return DICT
+        else:
+            return OTHER
+        
+    # Processes lists into nodes for tree traversal
+    def process_list(self):
+        for var in self.var:
+            self.children.append(node(var, self))
             
+    # Processes dictionaries into nodes for tree traversal
+    def process_dict(self):
+        #print("DICT:", self.var)
+        for key in self.var.keys():
+            # TODO: Consider storing variable name too? (key)
+            # Evaluate keys, then go deeper if needed for comparison.
+            self.children.append(node(self.var.get(key), self))
+
+    # Getters
     def get_parent(self):
         return self.parent
 
     def is_evaluated(self):
         return self.evaluated
-
-    def set_evaluated(self):
-        self.evaluated = True
     
     def get_children(self):
         return self.children
@@ -84,30 +102,9 @@ class node():
     def is_visited(self):
         return self.visited
     
+    # Setters
     def set_visited(self):
         self.visited = True
-
-    # Function to tell if we can split the current var deeper, or should just evaluate it at it's current depth
-    def type_check(self):
-        if (self.node_type is list):
-            return LIST
-        elif(self.node_type is dict):
-            return DICT
-        else:
-            return OTHER
         
-    # Processes lists into nodes for tree traversal
-    def process_list(self):
-        #print("LIST:", self.var)
-        for var in self.var:
-            self.children.append(node(var, self))
-            #print("VAR:", var)
-            
-    # Processes dictionaries into nodes for tree traversal
-    def process_dict(self):
-        #print("DICT:", self.var)
-        for key in self.var.keys():
-            # TODO: Consider storing variable name too? (key)
-            # Or possibly come up with a dictionary comparison function.
-            # Evaluate keys, then go deeper if needed for comparison.
-            self.children.append(node(self.var.get(key), self))
+    def set_evaluated(self):
+        self.evaluated = True

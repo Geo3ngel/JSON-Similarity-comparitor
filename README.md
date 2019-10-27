@@ -10,16 +10,6 @@ A command line tool for comparing JSON files by degree of similarity.
 * Don't write any code to parse the JSON, thats what built in language features and libraries are for.
 * Include a README file that describes any assumptions made & highlights anything about the solutions I made that I'd like Quiq to know about.
 
-
-# IF the nodes are equal between both trees at the defined point:
-    # - Take the node_count of either node and add it to the shared total, then mark those nodes, as well as their children, as visited. 
-    # - It would also be valid to simply mark that node as visited and go back.
-    # ELSE IF a node differs/is not equal between the trees, we first check if there is a type difference. 
-    # - If there is, we count the total nodes that are dependant on that node, and return them to the total for not matched
-    # - Also add those that do not match to a diff set for that node.
-    # ELSE there is a not a type difference between the nodes
-    # - go deeper & do not classify this node as being different.
-    
 ## Assumptions
 
 * No libraries for JSON comparison may be used
