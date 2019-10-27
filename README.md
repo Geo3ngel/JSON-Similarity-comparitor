@@ -36,9 +36,9 @@ Alternatively matching of value names to their values in a `hash table` for the 
 
 ## How it performs:
 
-    It captures similarity accuratly between JSON files of with similar base structure. If it contains sub components that are similar, but the json files have different base structures, this format will not capture that well, if at all. This is due to the top down approach of comparison used.
+It captures similarity accuratly between JSON files of with similar base structure. If it contains sub components that are similar, but the json files have different base structures, this format will not capture that well, if at all. This is due to the top down approach of comparison used.
     
-    If I where to make further improvements to this, I would probably add the hashtable method mentioned above and incorperate it into the current top down approach to check for similarity in type difference evaluations from a certain node in the tree downwards.
+If I where to make further improvements to this, I would probably add the hashtable method mentioned above and incorperate it into the current top down approach to check for similarity in type difference evaluations from a certain node in the tree downwards.
 
 | PERFORMANCE TABLE: | Breweries Master | Sample 1 | Sample 2 | Sample 3 | Sample 4 | Sample 5 |
 |:------:|:----------------:|:--------:|:--------:|:--------:|:--------:|:-------:|
