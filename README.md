@@ -28,7 +28,7 @@ Or if they where `both dictionaries`, but one has `more entries` than the other,
 
 ### However,
 
-This approach is not with flaws, due to the `top down` approach ustalized, we do not detect similarity of `sub components`. Which means to say there could be the same drink key in two dictionaries, but say one of those dictionaries is in a list or nested in another strcture that this program recognises as different. In this scenario, they would not be registered as similar.
+This approach is not without flaws, due to the `top down` approach ustalized, we do not detect similarity of `sub components`. Which means to say there could be the same drink key in two dictionaries, but say one of those dictionaries is in a list or nested in another strcture that this program recognises as different. In this scenario, they would not be registered as similar.
 
 In order to combat this, a `bottum up` approach would be necessary. By a bottum up approach, I mean starting at the end leaf nodes of the two trees and working our way up. Although this method would be more complex, both time wise and to write, as it would have to deal with checking for a match against all other active edge nodes of the other tree until a match is found to traverse upwards.
 
